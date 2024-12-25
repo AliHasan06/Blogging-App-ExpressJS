@@ -1,11 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
+mongoose.connect("mongodb://127.0.0.1:27017/data-association");
 
-const userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    age: Number,
-    post: [],
+const postSchema = new mongoose.Schema({
+  postdata: String,
+  user: String,
+  data: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("post", postSchema);
