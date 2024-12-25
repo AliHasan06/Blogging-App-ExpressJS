@@ -15,14 +15,14 @@ app.get("/create", async (req, res) => {
   });
   res.send(user);
 });
-app.get('/post/create', async (req, res) => {
-let post = await  postmodel.create({
-    postdata: 'hello saare log kaise ho',
-    user: "676c4e3ef9f05a623cb96ffb"
-  })
-  res.send(post)
-})
-
-app.listen(3000, () => {
-  // console.log('Example app listening on port 3000!');
+app.get("/post/create", async (req, res) => {
+  let post = await postmodel.create({
+    postdata: "hello saare log kaise ho",
+    user: "676c4e3ef9f05a623cb96ffb",
+  });
+  let user = await usermodel.findOne({ _id: "676c4e3ef9f05a623cb96ffb" });
+  user.post.push(post._id);
+  res.send(post);
 });
+
+app.listen(3000, () => {});
