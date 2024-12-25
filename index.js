@@ -23,7 +23,7 @@ app.get("/post/create", async (req, res) => {
   let user = await usermodel.findOne({ _id: "676c4e3ef9f05a623cb96ffb" });
   user.post.push(post._id);
   await user.save();
-  res.send(post);
+  res.send({post,user});
 });
 
 app.listen(3000, () => {});
