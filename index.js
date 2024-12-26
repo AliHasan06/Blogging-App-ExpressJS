@@ -13,5 +13,15 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/register", async (req, res) => {
+  let { email, password, name, username, age } = req.body;
+  let user = await usermodel.findOne({ email, password, name, username, age });
+  if (user) {
+    return res.status(500).send("User already registered");
+
+
+    
+  }
+});
 
 app.listen(3000, () => {});
