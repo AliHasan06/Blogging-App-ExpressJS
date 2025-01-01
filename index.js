@@ -19,7 +19,7 @@ app.post("/register", async (req, res) => {
   if (user) {
     return res.status(500).send("User already registered");
 
-    
+  
 
   }
 });
