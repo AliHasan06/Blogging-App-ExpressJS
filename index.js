@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const usermodel = require("./models/user");
 const cookieParser = require("cookie-parser");
+const bcrypt = require("bcrypt");
 
 app.set("view engine", "ejs");
 // app.use(express.static(path.join(__dirname, "public")));
@@ -16,12 +17,13 @@ app.get("/", (req, res) => {
 app.post("/register", async (req, res) => {
   let { email, password, name, username, age } = req.body;
   let user = await usermodel.findOne({ email, password, name, username, age });
+ 
+  // to check if someone is already registered
   if (user) {
-    return res.status(500).send("User already registered");
+    return res.status(500).send("User already registered");  }
 
-  
 
-  }
+    bcrypt
 });
 
 app.listen(3000, () => {});
