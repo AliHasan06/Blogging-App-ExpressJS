@@ -17,13 +17,13 @@ app.get("/", (req, res) => {
 app.post("/register", async (req, res) => {
   let { email, password, name, username, age } = req.body;
   let user = await usermodel.findOne({ email, password, name, username, age });
- 
+
   // to check if someone is already registered
-  if (user) {
-    return res.status(500).send("User already registered");  }
+  if (user) return res.status(500).send("User already registered");
 
-
-    bcrypt
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(password, salt, (err, hash) => {});
+  });
 });
 
 app.listen(3000, () => {});
