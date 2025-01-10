@@ -3,6 +3,7 @@ const app = express();
 const usermodel = require("./models/user");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 app.set("view engine", "ejs");
 // app.use(express.static(path.join(__dirname, "public")));
