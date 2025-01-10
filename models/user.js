@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
   age: Number,
   password: String,
   name: String,
-  posts: [],
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Post"}],
 });
 
 module.exports = mongoose.model("User", userSchema);
