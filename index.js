@@ -23,6 +23,7 @@ app.post("/register", async (req, res) => {
   if (user) return res.status(500).send("User already registered");
 
   bcrypt.genSalt(10, (err, salt) => {
+    console.log(salt)
     bcrypt.hash(password, salt, async (err, hash) => {
       let user = await usermodel.create({
         email,
@@ -31,10 +32,11 @@ app.post("/register", async (req, res) => {
         username,
         age,
       });
-
-      jwt.sign({ email: user.email, userid: user.id }, "ali");
+console.log(hash)
+    let token =  jwt.sign({ email: user.email, userid: user.id }, "ali");
+    res.cookie("token", token);
     });
   });
 });
 
-app.listen(3000, () => {});
+app.listen(3001, () => {});
